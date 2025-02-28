@@ -6,38 +6,38 @@ import { aslAlphabet } from "@/lib/handpose";
 import { Info } from "lucide-react";
 
 const gestureImagePaths: Record<string, string> = {
-  'A': '/images/asl/A.png',
-  'B': '/images/asl/B.png',
-  'C': '/images/asl/C.png',
-  'D': '/images/asl/D.png',
-  'E': '/images/asl/E.png',
-  'F': '/images/asl/F.png',
-  'G': '/images/asl/G.png',
-  'H': '/images/asl/H.png',
-  'I': '/images/asl/I.png',
-  'J': '/images/asl/J.png',
-  'K': '/images/asl/K.png',
-  'L': '/images/asl/L.png',
-  'M': '/images/asl/M.png',
-  'N': '/images/asl/N.png',
-  'O': '/images/asl/O.png',
-  'P': '/images/asl/P.png',
-  'Q': '/images/asl/Q.png',
-  'R': '/images/asl/R.png',
-  'S': '/images/asl/S.png',
-  'T': '/images/asl/T.png',
-  'U': '/images/asl/U.png',
-  'V': '/images/asl/V.png',
-  'W': '/images/asl/W.png',
-  'X': '/images/asl/X.png',
-  'Y': '/images/asl/Y.png',
-  'Z': '/images/asl/Z.png',
-  'Space': '/images/asl/space.png',
-  'Delete': '/images/asl/delete.png'
+  'A': 'https://www.handspeak.com/word/a/asl-alphabet/a.png',
+  'B': 'https://www.handspeak.com/word/b/asl-alphabet/b.png',
+  'C': 'https://www.handspeak.com/word/c/asl-alphabet/c.png',
+  'D': 'https://www.handspeak.com/word/d/asl-alphabet/d.png',
+  'E': 'https://www.handspeak.com/word/e/asl-alphabet/e.png',
+  'F': 'https://www.handspeak.com/word/f/asl-alphabet/f.png',
+  'G': 'https://www.handspeak.com/word/g/asl-alphabet/g.png',
+  'H': 'https://www.handspeak.com/word/h/asl-alphabet/h.png',
+  'I': 'https://www.handspeak.com/word/i/asl-alphabet/i.png',
+  'J': 'https://www.handspeak.com/word/j/asl-alphabet/j.png',
+  'K': 'https://www.handspeak.com/word/k/asl-alphabet/k.png',
+  'L': 'https://www.handspeak.com/word/l/asl-alphabet/l.png',
+  'M': 'https://www.handspeak.com/word/m/asl-alphabet/m.png',
+  'N': 'https://www.handspeak.com/word/n/asl-alphabet/n.png',
+  'O': 'https://www.handspeak.com/word/o/asl-alphabet/o.png',
+  'P': 'https://www.handspeak.com/word/p/asl-alphabet/p.png',
+  'Q': 'https://www.handspeak.com/word/q/asl-alphabet/q.png',
+  'R': 'https://www.handspeak.com/word/r/asl-alphabet/r.png',
+  'S': 'https://www.handspeak.com/word/s/asl-alphabet/s.png',
+  'T': 'https://www.handspeak.com/word/t/asl-alphabet/t.png',
+  'U': 'https://www.handspeak.com/word/u/asl-alphabet/u.png',
+  'V': 'https://www.handspeak.com/word/v/asl-alphabet/v.png',
+  'W': 'https://www.handspeak.com/word/w/asl-alphabet/w.png',
+  'X': 'https://www.handspeak.com/word/x/asl-alphabet/x.png',
+  'Y': 'https://www.handspeak.com/word/y/asl-alphabet/y.png',
+  'Z': 'https://www.handspeak.com/word/z/asl-alphabet/z.png',
+  'Space': 'https://images.unsplash.com/photo-1550684376-efcbd6e3f031?w=150&h=150&fit=crop',
+  'Delete': 'https://images.unsplash.com/photo-1616628188506-4a13c4d04cb9?w=150&h=150&fit=crop'
 };
 
 // Fallback image URL
-const fallbackImageUrl = "/placeholder.svg";
+const fallbackImageUrl = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=150&h=150&fit=crop";
 
 const gestureDescriptions: Record<string, string> = {
   'A': 'Fist with thumb pointing up',
@@ -82,14 +82,14 @@ const GestureReference = () => {
   ];
 
   return (
-    <Card className="w-full max-w-5xl mx-auto">
-      <CardHeader>
+    <Card className="w-full max-w-5xl mx-auto shadow-md border-accent/20 bg-white/80 backdrop-blur-sm">
+      <CardHeader className="bg-gradient-to-r from-purple-50 to-indigo-50 border-b">
         <CardTitle className="flex items-center">
           <Info className="w-5 h-5 mr-2 text-accent" />
           ASL Gesture Reference
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-4 sm:p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid grid-cols-4 mb-6">
             {letterGroups.map(group => (
@@ -103,9 +103,9 @@ const GestureReference = () => {
             <TabsContent key={group.id} value={group.id}>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                 {group.letters.map(letter => (
-                  <Card key={letter} className="overflow-hidden">
+                  <Card key={letter} className="overflow-hidden hover:shadow-md transition-shadow duration-300 border-accent/10">
                     <CardContent className="p-0">
-                      <div className="relative aspect-square bg-muted/20">
+                      <div className="relative aspect-square bg-gradient-to-br from-purple-50 to-white flex items-center justify-center">
                         <img 
                           src={gestureImagePaths[letter] || fallbackImageUrl} 
                           alt={`ASL sign for ${letter}`}
@@ -116,7 +116,7 @@ const GestureReference = () => {
                           }}
                         />
                       </div>
-                      <div className="p-3">
+                      <div className="p-3 bg-white">
                         <h3 className="text-lg font-semibold text-center mb-1">{letter}</h3>
                         <p className="text-sm text-muted-foreground">{gestureDescriptions[letter]}</p>
                       </div>

@@ -43,15 +43,15 @@ const Index = () => {
   }, []);
   
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center p-4 sm:p-6 md:p-8">
-      <div className="w-full max-w-5xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-[#f6f7f9] to-[#e6e9f0] flex flex-col items-center p-4 sm:p-6 md:p-8">
+      <div className="w-full max-w-6xl mx-auto">
         <header className="text-center mb-8 animate-fade-in">
           <div className="mb-2">
             <span className="inline-block px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium uppercase tracking-wider">
               Assistive Technology
             </span>
           </div>
-          <h1 className="text-4xl font-bold tracking-tight mb-2 sm:text-5xl">
+          <h1 className="text-4xl font-bold tracking-tight mb-2 sm:text-5xl bg-gradient-to-r from-accent to-purple-400 bg-clip-text text-transparent">
             Sign Sensei
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -63,8 +63,8 @@ const Index = () => {
         <Instructions />
         
         <div className="flex flex-col md:flex-row gap-8 mb-8">
-          <div className="flex-1-cols md:flex-1">
-            <Card className="shadow-md overflow-hidden h-full">
+          <div className="flex-2-cols md:flex-[3]">
+            <Card className="shadow-lg rounded-xl overflow-hidden h-full border-accent/20">
               <CardContent className="p-0">
                 <div className="p-6">
                   <Camera onFrame={handleFrame} />
@@ -73,7 +73,7 @@ const Index = () => {
             </Card>
           </div>
           
-          <div className="flex-1-cols md:flex-1">
+          <div className="flex-1-cols md:flex-[2]">
             <GestureDetector 
               onGestureDetected={handleGestureDetected}
               onPhraseDetected={handlePhraseDetected}

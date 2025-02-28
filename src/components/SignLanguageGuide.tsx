@@ -4,6 +4,22 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BookOpen, AlignLeft, MessageSquare } from "lucide-react";
 
+const phraseImages: Record<string, string> = {
+  'Hello': 'https://www.handspeak.com/word/h/hello.jpg',
+  'Thank you': 'https://www.handspeak.com/word/t/thank-you.jpg',
+  'Please': 'https://www.handspeak.com/word/p/please.jpg',
+  'Yes': 'https://www.handspeak.com/word/y/yes.jpg',
+  'No': 'https://www.handspeak.com/word/n/no.jpg',
+  'Help': 'https://www.handspeak.com/word/h/help.jpg',
+  'Sorry': 'https://www.handspeak.com/word/s/sorry.jpg',
+  'Love': 'https://www.handspeak.com/word/l/love.jpg',
+  'Want': 'https://www.handspeak.com/word/w/want.jpg',
+  'Need': 'https://www.handspeak.com/word/n/need.jpg',
+};
+
+// Fallback image
+const fallbackPhraseImage = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=300&h=200&fit=crop";
+
 const AlphabetGuide = () => {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
@@ -21,10 +37,10 @@ const AlphabetGuide = () => {
         { letter: 'K', description: 'Index, middle finger & thumb up forming a K' },
         { letter: 'L', description: 'L shape with thumb and index finger' },
       ].map(item => (
-        <Card key={item.letter} className="overflow-hidden">
+        <Card key={item.letter} className="overflow-hidden hover:shadow-md transition-shadow duration-300 border-accent/10">
           <CardContent className="p-4">
             <div className="text-center mb-2">
-              <span className="text-3xl font-bold">{item.letter}</span>
+              <span className="text-3xl font-bold bg-gradient-to-r from-accent to-purple-400 bg-clip-text text-transparent">{item.letter}</span>
             </div>
             <p className="text-sm text-muted-foreground">{item.description}</p>
           </CardContent>
@@ -50,10 +66,22 @@ const CommonPhrasesGuide = () => {
           { phrase: 'Want', signs: 'Hands open, palms up, pull toward body' },
           { phrase: 'Need', signs: 'Bent hands, one over the other, pulling down twice' },
         ].map(item => (
-          <Card key={item.phrase} className="overflow-hidden">
-            <CardContent className="p-4">
-              <div className="font-semibold text-lg mb-1">{item.phrase}</div>
-              <p className="text-sm text-muted-foreground">{item.signs}</p>
+          <Card key={item.phrase} className="overflow-hidden hover:shadow-md transition-shadow duration-300 border-accent/10">
+            <CardContent className="p-0">
+              <div className="aspect-video bg-gradient-to-br from-purple-50 to-indigo-50 flex items-center justify-center">
+                <img
+                  src={phraseImages[item.phrase] || fallbackPhraseImage}
+                  alt={`Sign for "${item.phrase}"`}
+                  className="object-contain w-full h-full p-2"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = fallbackPhraseImage;
+                  }}
+                />
+              </div>
+              <div className="p-4">
+                <div className="font-semibold text-lg mb-1 text-accent">{item.phrase}</div>
+                <p className="text-sm text-muted-foreground">{item.signs}</p>
+              </div>
             </CardContent>
           </Card>
         ))}
@@ -140,14 +168,14 @@ const SignLanguageGuide = () => {
   const [activeTab, setActiveTab] = useState("alphabet");
   
   return (
-    <Card className="w-full max-w-5xl mx-auto">
-      <CardHeader>
+    <Card className="w-full max-w-5xl mx-auto shadow-md border-accent/20 bg-white/80 backdrop-blur-sm">
+      <CardHeader className="bg-gradient-to-r from-purple-50 to-indigo-50 border-b">
         <CardTitle className="flex items-center">
           <BookOpen className="w-5 h-5 mr-2 text-accent" />
           Sign Language Guide
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-4 sm:p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid grid-cols-3 mb-6">
             <TabsTrigger value="alphabet" className="flex items-center">

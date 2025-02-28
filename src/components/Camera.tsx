@@ -24,8 +24,8 @@ const Camera = ({ onFrame }: CameraProps) => {
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { 
           facingMode: "user",
-          width: { ideal: 640 },
-          height: { ideal: 480 }
+          width: { ideal: 1280 },
+          height: { ideal: 720 }
         }
       });
       
@@ -93,17 +93,17 @@ const Camera = ({ onFrame }: CameraProps) => {
 
   return (
     <div className="flex flex-col items-center space-y-4 w-full">
-      <Card className={`relative overflow-hidden w-full aspect-video camera-container max-w-2xl ${isActive ? 'detection-active' : ''}`}>
+      <Card className={`relative overflow-hidden w-full aspect-video camera-container max-w-full ${isActive ? 'detection-active' : ''}`}>
         <CardContent className="p-0">
           <video
             ref={videoRef}
-            className="w-full h-full object-cover bg-muted/30"
+            className="w-full h-full object-cover bg-gradient-to-br from-[#e6b980] to-[#eacda3]"
             playsInline
             muted
           />
           {!isActive && !isLoading && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/5 backdrop-blur-sm">
-              <CameraIcon className="w-20 h-20 text-muted-foreground/40" />
+            <div className="absolute inset-0 flex items-center justify-center bg-black/10 backdrop-blur-sm">
+              <CameraIcon className="w-20 h-20 text-white/80" />
             </div>
           )}
         </CardContent>
@@ -115,7 +115,7 @@ const Camera = ({ onFrame }: CameraProps) => {
             onClick={startCamera}
             disabled={isLoading}
             size="lg"
-            className="px-6"
+            className="px-6 bg-gradient-to-r from-accent to-purple-500 hover:from-accent/90 hover:to-purple-600 shadow-md"
           >
             {isLoading ? (
               <>
@@ -134,7 +134,7 @@ const Camera = ({ onFrame }: CameraProps) => {
             onClick={stopCamera}
             variant="destructive"
             size="lg"
-            className="px-6"
+            className="px-6 shadow-md"
           >
             <VideoOff className="mr-2 h-4 w-4" />
             Stop Camera
