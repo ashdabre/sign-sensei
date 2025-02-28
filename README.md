@@ -34,6 +34,7 @@ This application aims to bridge communication gaps by providing an interactive a
 
 ## Deployment
 This application is deployed check out 
+https://signsensi.netlify.app/
 
 
 
