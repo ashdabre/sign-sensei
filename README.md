@@ -1,69 +1,42 @@
-# Welcome to your Lovable project
+# Sign-sensei - Sign Language Detection
 
-## Project info
+## Introduction
+Sign language is a visual means of communication that utilizes hand gestures, facial expressions, and body movements to convey meaning. It is primarily used by the Deaf and hard-of-hearing communities worldwide. Each country or region may have its own unique sign language, such as American Sign Language (ASL), British Sign Language (BSL), or Indian Sign Language (ISL).
 
-**URL**: https://lovable.dev/projects/d3d37cad-38ee-4957-922e-7d41905af9eb
+This application aims to bridge communication gaps by providing an interactive and intuitive platform for learning and using sign language. It supports multiple languages and integrates features like real-time gesture recognition, AI-based sign detection, and gamified learning experiences to enhance user engagement.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Gesture Recognition**: AI-powered sign language recognition for real-time practice.
+- **Interactive Lessons**: Step-by-step tutorials to master basic and advanced signs.
+- **Facial Emotion Recognition**: Enhances sign interpretation with facial expressions.
+- **Offline Mode**: Access lessons and practice sessions without an internet connection.
 
-**Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d3d37cad-38ee-4957-922e-7d41905af9eb) and start prompting.
 
-Changes made via Lovable will be committed automatically to this repo.
+## How to Get Started
+1. Clone the repository:
+   ```sh
+   git clone <YOUR_GIT_URL>
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd <YOUR_PROJECT_NAME>
+   ```
+3. Install dependencies:
+   ```sh
+   npm install
+   ```
+4. Start the development server:
+   ```sh
+   npm run dev
+   ```
 
-**Use your preferred IDE**
+## Deployment
+This application is deployed check out 
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-Follow these steps:
+---
+For more details on sign language and learning resources, visit reputable organizations like the World Federation of the Deaf (WFD) or local Deaf associations.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/d3d37cad-38ee-4957-922e-7d41905af9eb) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
