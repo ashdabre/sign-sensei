@@ -72,11 +72,27 @@ const GestureDetector = ({ onGestureDetected, onPhraseDetected, isActive }: Gest
     }
   }, [detectedGesture, initializationStatus, onGestureDetected, onPhraseDetected]);
 
-  // Expose the processFrame function to parent component
+  // Expose the processFrame function to window for access from Index.tsx
   useEffect(() => {
-    // @ts-ignore - Adding to window for debugging purposes
-    window.processFrame = processFrame;
+    if (typeof window !== 'undefined') {
+      (window as any).processFrame = processFrame;
+    }
+    
+    // Cleanup function
+    return () => {
+      if (typeof window !== 'undefined') {
+        delete (window as any).processFrame;
+      }
+    };
   }, [processFrame]);
+
+  // Split the alphabet into rows for better UI display
+  const alphabetRows = [
+    aslAlphabet.slice(0, 7),  // A-G
+    aslAlphabet.slice(7, 14), // H-N
+    aslAlphabet.slice(14, 21), // O-U
+    aslAlphabet.slice(21, 28)  // V-Z and special signs
+  ];
 
   return (
     <div className="w-full max-w-2xl mx-auto">
@@ -94,13 +110,17 @@ const GestureDetector = ({ onGestureDetected, onPhraseDetected, isActive }: Gest
           </div>
         </div>
         
-        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2">
-          {aslAlphabet.slice(0, 7).map((letter) => (
-            <GestureCard
-              key={letter}
-              letter={letter}
-              isActive={detectedGesture === letter}
-            />
+        <div className="space-y-2">
+          {alphabetRows.map((row, rowIndex) => (
+            <div key={rowIndex} className="grid grid-cols-7 gap-2">
+              {row.map((letter) => (
+                <GestureCard
+                  key={letter}
+                  letter={letter}
+                  isActive={detectedGesture === letter}
+                />
+              ))}
+            </div>
           ))}
         </div>
       </div>

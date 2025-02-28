@@ -6,6 +6,14 @@ import GestureDetector from "@/components/GestureDetector";
 import LanguageDisplay from "@/components/LanguageDisplay";
 import Instructions from "@/components/Instructions";
 import SignLanguageGuide from "@/components/SignLanguageGuide";
+import GestureReference from "@/components/GestureReference";
+
+// Define processFrame on Window interface to fix TypeScript error
+declare global {
+  interface Window {
+    processFrame?: (video: HTMLVideoElement) => void;
+  }
+}
 
 const Index = () => {
   const [isCameraActive, setIsCameraActive] = useState(false);
@@ -19,7 +27,6 @@ const Index = () => {
     setIsCameraActive(true);
     
     // Call the processFrame function exported by GestureDetector
-    // @ts-ignore - Using window for function access
     if (window.processFrame) {
       window.processFrame(video);
     }
@@ -80,6 +87,10 @@ const Index = () => {
             currentGesture={currentGesture} 
             currentPhrase={currentPhrase} 
           />
+        </div>
+        
+        <div className="mb-8">
+          <GestureReference />
         </div>
         
         <div className="mb-8">
