@@ -44,7 +44,7 @@ const Index = () => {
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f6f7f9] to-[#e6e9f0] flex flex-col items-center p-4 sm:p-6 md:p-8">
-      <div className="w-full max-w-6xl mx-auto">
+      <div className="w-full max-w-7xl mx-auto">
         <header className="text-center mb-8 animate-fade-in">
           <div className="mb-2">
             <span className="inline-block px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium uppercase tracking-wider">
@@ -62,18 +62,19 @@ const Index = () => {
         
         <Instructions />
         
-        <div className="flex flex-col md:flex-row gap-8 mb-8">
-          <div className="flex-2-cols md:flex-[3]">
+        {/* Increased camera size by adjusting the flex layout and container size */}
+        <div className="flex flex-col lg:flex-row gap-8 mb-8">
+          <div className="w-full lg:w-3/4">
             <Card className="shadow-lg rounded-xl overflow-hidden h-full border-accent/20">
               <CardContent className="p-0">
-                <div className="p-6">
+                <div className="p-4">
                   <Camera onFrame={handleFrame} />
                 </div>
               </CardContent>
             </Card>
           </div>
           
-          <div className="flex-1-cols md:flex-[2]">
+          <div className="w-full lg:w-1/4">
             <GestureDetector 
               onGestureDetected={handleGestureDetected}
               onPhraseDetected={handlePhraseDetected}

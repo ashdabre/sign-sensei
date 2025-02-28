@@ -1,0 +1,12 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="#f4f4f5" rx="10" ry="10" />
+  <!-- Simplified ASL "J" hand shape with motion indicator -->
+  <path d="M50,30 L60,30 L60,70 Q60,85 45,85 L40,85" fill="none" stroke="#7c3aed" stroke-width="2" />
+  <!-- Motion path -->
+  <path d="M60,70 Q60,85 45,85" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="4,2" />
+  <!-- Hand -->
+  <path d="M35,70 C30,70 30,60 35,55 L50,55 L50,70 Z" fill="#d8b4fe" stroke="#7c3aed" stroke-width="2" />
+  <!-- Letter label -->
+  <text x="50" y="15" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#7c3aed">Letter J</text>
+</svg>
