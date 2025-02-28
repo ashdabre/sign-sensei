@@ -8,12 +8,14 @@ import { toast } from "sonner";
 
 interface GestureDetectorProps {
   onGestureDetected: (gesture: string | null) => void;
+  onPhraseDetected: (phrase: string | null) => void;
   isActive: boolean;
 }
 
-const GestureDetector = ({ onGestureDetected, isActive }: GestureDetectorProps) => {
+const GestureDetector = ({ onGestureDetected, onPhraseDetected, isActive }: GestureDetectorProps) => {
   const [initializationStatus, setInitializationStatus] = useState<'idle' | 'loading' | 'ready' | 'error'>('idle');
   const [detectedGesture, setDetectedGesture] = useState<string | null>(null);
+  const [detectionCount, setDetectionCount] = useState(0);
 
   // Initialize the hand pose detector
   useEffect(() => {
@@ -48,6 +50,15 @@ const GestureDetector = ({ onGestureDetected, isActive }: GestureDetectorProps) 
         if (gesture !== detectedGesture) {
           setDetectedGesture(gesture);
           onGestureDetected(gesture);
+          
+          // Increment detection count for debugging
+          setDetectionCount(prev => prev + 1);
+        }
+        
+        // Check for phrases after each successful gesture detection
+        const phrase = detector.checkForPhrases();
+        if (phrase) {
+          onPhraseDetected(phrase);
         }
       } else {
         // No hands detected
@@ -59,15 +70,28 @@ const GestureDetector = ({ onGestureDetected, isActive }: GestureDetectorProps) 
     } catch (error) {
       console.error("Error in hand detection:", error);
     }
-  }, [detectedGesture, initializationStatus, onGestureDetected]);
+  }, [detectedGesture, initializationStatus, onGestureDetected, onPhraseDetected]);
+
+  // Expose the processFrame function to parent component
+  useEffect(() => {
+    // @ts-ignore - Adding to window for debugging purposes
+    window.processFrame = processFrame;
+  }, [processFrame]);
 
   return (
     <div className="w-full max-w-2xl mx-auto">
       <div className="mb-4">
-        <div className="flex items-center space-x-2 mb-2">
-          <Radar className="h-5 w-5 text-accent" />
-          <h3 className="text-lg font-medium">Gesture Detection</h3>
-          <StatusBadge status={initializationStatus} isActive={isActive} />
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center space-x-2">
+            <Radar className="h-5 w-5 text-accent" />
+            <h3 className="text-lg font-medium">Gesture Detection</h3>
+            <StatusBadge status={initializationStatus} isActive={isActive} />
+          </div>
+          <div>
+            <Badge variant="outline" className="bg-accent/10 text-accent">
+              Detections: {detectionCount}
+            </Badge>
+          </div>
         </div>
         
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2">

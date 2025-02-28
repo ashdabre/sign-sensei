@@ -1,23 +1,38 @@
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import Camera from "@/components/Camera";
 import GestureDetector from "@/components/GestureDetector";
 import LanguageDisplay from "@/components/LanguageDisplay";
 import Instructions from "@/components/Instructions";
+import SignLanguageGuide from "@/components/SignLanguageGuide";
 
 const Index = () => {
   const [isCameraActive, setIsCameraActive] = useState(false);
   const [currentGesture, setCurrentGesture] = useState<string | null>(null);
+  const [currentPhrase, setCurrentPhrase] = useState<string | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   
   const handleFrame = useCallback((video: HTMLVideoElement) => {
-    // This function is called for each video frame
-    // The GestureDetector handles the actual detection logic
+    // Store the video reference for gesture detection
+    videoRef.current = video;
     setIsCameraActive(true);
+    
+    // Call the processFrame function exported by GestureDetector
+    // @ts-ignore - Using window for function access
+    if (window.processFrame) {
+      window.processFrame(video);
+    }
   }, []);
   
   const handleGestureDetected = useCallback((gesture: string | null) => {
     setCurrentGesture(gesture);
+  }, []);
+  
+  const handlePhraseDetected = useCallback((phrase: string | null) => {
+    if (phrase) {
+      setCurrentPhrase(phrase);
+    }
   }, []);
   
   return (
@@ -40,23 +55,35 @@ const Index = () => {
         
         <Instructions />
         
-        <div className="grid grid-cols-1 gap-8">
-          <Card className="shadow-md overflow-hidden">
-            <CardContent className="p-0">
-              <div className="p-6">
-                <Camera onFrame={handleFrame} />
-              </div>
-            </CardContent>
-          </Card>
+        <div className="flex flex-col md:flex-row gap-8 mb-8">
+          <div className="flex-1-cols md:flex-1">
+            <Card className="shadow-md overflow-hidden h-full">
+              <CardContent className="p-0">
+                <div className="p-6">
+                  <Camera onFrame={handleFrame} />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
           
-          <div className="space-y-8">
+          <div className="flex-1-cols md:flex-1">
             <GestureDetector 
               onGestureDetected={handleGestureDetected}
+              onPhraseDetected={handlePhraseDetected}
               isActive={isCameraActive}
             />
-            
-            <LanguageDisplay currentGesture={currentGesture} />
           </div>
+        </div>
+        
+        <div className="mb-8">
+          <LanguageDisplay 
+            currentGesture={currentGesture} 
+            currentPhrase={currentPhrase} 
+          />
+        </div>
+        
+        <div className="mb-8">
+          <SignLanguageGuide />
         </div>
         
         <footer className="mt-12 text-center text-sm text-muted-foreground">

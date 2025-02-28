@@ -118,3 +118,26 @@
   background-color: hsla(var(--accent), 0.1);
   transform: translateY(-3px);
 }
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 1.5s ease-in-out infinite;
+}
+
+.flex-1-cols {
+  flex: 1 1 100%;
+}
+
+.flex-2-cols {
+  flex: 2 1 50%;
+}
+
+@media (min-width: 640px) {
+  .sm-flex-1 {
+    flex: 1;
+  }
+}
