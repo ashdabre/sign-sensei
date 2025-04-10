@@ -1,0 +1,10 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="#f4f4f5" rx="10" ry="10" />
+  <!-- Simplified ASL "I" hand shape -->
+  <path d="M50,85 L50,30 L60,30 L60,85 Z" fill="#d8b4fe" stroke="#7c3aed" stroke-width="2" />
+  <!-- Closed hand -->
+  <path d="M35,85 C30,85 30,75 35,70 L50,70 L50,85 Z" fill="#d8b4fe" stroke="#7c3aed" stroke-width="2" />
+  <!-- Letter label -->
+  <text x="50" y="15" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#7c3aed">Letter I</text>
+</svg>

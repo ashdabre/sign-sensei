@@ -1,0 +1,12 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="#f4f4f5" rx="10" ry="10" />
+  <!-- Simplified ASL "D" hand shape -->
+  <path d="M45,85 L45,40 L55,40 L55,30 L45,30 C40,30 35,35 35,40 L35,85 Z" fill="#d8b4fe" stroke="#7c3aed" stroke-width="2" />
+  <!-- Index finger pointing up -->
+  <path d="M55,30 L65,30 L65,50 L55,50 Z" fill="#d8b4fe" stroke="#7c3aed" stroke-width="2" />
+  <!-- Thumb -->
+  <path d="M35,60 L25,55 L25,45 L35,50 Z" fill="#d8b4fe" stroke="#7c3aed" stroke-width="2" />
+  <!-- Letter label -->
+  <text x="50" y="15" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#7c3aed">Letter D</text>
+</svg>
